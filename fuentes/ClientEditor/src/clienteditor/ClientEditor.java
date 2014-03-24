@@ -57,6 +57,7 @@ public class ClientEditor extends javax.swing.JPanel {
      * @param client client to edit.
      */
     public void setClient(Client client) {
+        System.out.println("Hola mundo.....!");
         Client oldClient = this.client;
         this.client = client;
         firePropertyChange("client", oldClient, client);
@@ -72,11 +73,6 @@ public class ClientEditor extends javax.swing.JPanel {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         sexButtonGroup = new javax.swing.ButtonGroup();
-        ageConverter = new clienteditor.AgeConverter();
-        ageValidator = new clienteditor.AgeValidator();
-        maritalStatusConverter = new clienteditor.MaritalStatusConverter();
-        requiredStringValidator = new clienteditor.RequiredStringValidator();
-        emailValidator = new clienteditor.EmailValidator();
         clientInfoPane = new javax.swing.JTabbedPane();
         personalPanel = new javax.swing.JPanel();
         firstNameLabel = new javax.swing.JLabel();
@@ -113,13 +109,13 @@ public class ClientEditor extends javax.swing.JPanel {
         surnameLabel.setText("Surname:"); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.surname}"), surnameTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "surname"); // NOI18N
-        binding.setValidator(requiredStringValidator);
+        binding.setValidator(null);
         bindingGroup.addBinding(binding);
 
         maritalComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Single", "Married", "Separated", "Divorced" }));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.maritalStatus}"), maritalComboBox, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"), "maritalStatus"); // NOI18N
-        binding.setConverter(maritalStatusConverter);
+        binding.setConverter(null);
         bindingGroup.addBinding(binding);
 
         sexLabel.setText("Sex:"); // NOI18N
@@ -138,8 +134,8 @@ public class ClientEditor extends javax.swing.JPanel {
         ageLabel.setText("Age:"); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.age}"), ageTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "age");
-        binding.setConverter(ageConverter);
-        binding.setValidator(ageValidator);
+        binding.setConverter(null);
+        binding.setValidator(null);
         bindingGroup.addBinding(binding);
 
         org.jdesktop.layout.GroupLayout personalPanelLayout = new org.jdesktop.layout.GroupLayout(personalPanel);
@@ -212,7 +208,7 @@ public class ClientEditor extends javax.swing.JPanel {
         bindingGroup.addBinding(binding);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.email}"), emailTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "email");
-        binding.setValidator(emailValidator);
+        binding.setValidator(null);
         bindingGroup.addBinding(binding);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.web}"), webTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "web");
@@ -264,15 +260,15 @@ public class ClientEditor extends javax.swing.JPanel {
 
         clientInfoPane.addTab("Contact", contactPanel);
 
-        usernameLabel.setFont(new java.awt.Font("Dialog", 1, 24));
+        usernameLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.firstName} ${client.surname}"), usernameLabel, org.jdesktop.beansbinding.BeanProperty.create("text"), "displayNameTitle");
         bindingGroup.addBinding(binding);
 
-        clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24));
+        clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         clientInfoLabel.setText("Client Info:"); // NOI18N
 
-        validationMsgLabel.setFont(new java.awt.Font("Dialog", 1, 11));
+        validationMsgLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         validationMsgLabel.setForeground(new java.awt.Color(255, 0, 0));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -282,12 +278,12 @@ public class ClientEditor extends javax.swing.JPanel {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, clientInfoPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, clientInfoPane)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(clientInfoLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(usernameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, validationMsgLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+                        .add(usernameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, validationMsgLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -347,16 +343,13 @@ public class ClientEditor extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private clienteditor.AgeConverter ageConverter;
     private javax.swing.JLabel ageLabel;
     private javax.swing.JTextField ageTextField;
-    private clienteditor.AgeValidator ageValidator;
     private javax.swing.JLabel clientInfoLabel;
     private javax.swing.JTabbedPane clientInfoPane;
     private javax.swing.JPanel contactPanel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
-    private clienteditor.EmailValidator emailValidator;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
@@ -364,12 +357,10 @@ public class ClientEditor extends javax.swing.JPanel {
     private javax.swing.JTextField imTextField;
     private javax.swing.JRadioButton maleRadioButton;
     private javax.swing.JComboBox maritalComboBox;
-    private clienteditor.MaritalStatusConverter maritalStatusConverter;
     private javax.swing.JLabel maritalStatusLabel;
     private javax.swing.JLabel nicknameLabel;
     private javax.swing.JTextField nicknameTextField;
     private javax.swing.JPanel personalPanel;
-    private clienteditor.RequiredStringValidator requiredStringValidator;
     private javax.swing.ButtonGroup sexButtonGroup;
     private javax.swing.JLabel sexLabel;
     private javax.swing.JLabel surnameLabel;
