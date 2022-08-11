@@ -9,6 +9,10 @@ package clienteditor;
 /**
  *
  * @author Cristian
+ * @author Cristian
+ * @author Cristian
+ * @author Cristian
+ * @author Cristian
  */
 public class Clasesita {
     
